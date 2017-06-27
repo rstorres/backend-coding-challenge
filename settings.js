@@ -12,6 +12,7 @@ var paths = {
 	static: {
 		source: "./src/",
 		target: config.target + "/",
+		apiserverfrontend: config.apiserverfrontend,
 		targethtml: config.htmltarget + "/"
 	},
 	build: {

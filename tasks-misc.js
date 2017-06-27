@@ -32,6 +32,13 @@ gulp.task("clean-static", function() {
 	]);
 });
 
+// Clean API server frontend static content
+gulp.task("clean-apiserverfrontend", function() {
+	return del([
+		settings.paths.static.apiserverfrontend
+	]);
+});
+
 // Clean all directories
 gulp.task("clean", ["clean-source", "clean-target"]);
 gulp.task("clean-all", ["clean-source", "clean-target", "clean-static"]);
@@ -50,6 +57,13 @@ gulp.task("copystatic", function() {
 	return gulp.src(settings.buildPathArray(settings.paths.build.source, settings.paths.copy), { base: settings.paths.build.source })
 		.pipe(gulp.dest(settings.paths.build.target));
 });
+
+// Copy static files to API server frontend folder
+gulp.task("copyfrontend",["clean-apiserverfrontend"], function() {
+	return gulp.src(settings.paths.static.target + "**/*.*")
+		.pipe(gulp.dest(settings.paths.static.apiserverfrontend));
+});
+
 
 // Copy built files to release directory
 gulp.task("copyto", ["copystatic"], function() {

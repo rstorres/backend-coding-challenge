@@ -9,6 +9,8 @@ module.exports = {
 	target: "./static",
 	htmltarget: "./static",
 
+	apiserverfrontend:"./src/main/webapp/frontend",
+
 	// Font service url
 	fonts: "//fast.fonts.net/jsapi/8f4aef36-1a46-44be-a573-99686bfcc33b.js",
 

@@ -360,7 +360,7 @@ gulp.task("watch", function(done) {
 });
 
 // Main release build chain
-gulp.task("build", gulpsync.sync(["gitinfo", "copyfrom", "iconfont", "css", "html", "apps-scripts", "copyto"], "sync release"));
+gulp.task("build", gulpsync.sync(["gitinfo", "copyfrom", "iconfont", "css", "html", "apps-scripts", "copyto","copyfrontend"], "sync release"));
 gulp.task("build-lint", gulpsync.sync(["gitinfo", "copyfrom", "eslint", "iconfont", "css", "html", "apps-scripts", "copyto"], "sync release-lint"));
 
 // Uncompressed release build chain

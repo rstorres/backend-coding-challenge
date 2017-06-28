@@ -9,6 +9,9 @@ Expenses controller
 var app = angular.module("expenses.controller", []);
 
 app.controller("ctrlExpenses", ["$rootScope", "$scope", "config", "restalchemy", function ExpensesCtrl($rootScope, $scope, $config, $restalchemy) {
+	
+	const VAT = 0.20;
+
 	// Update the headings
 	$rootScope.mainTitle = "Expenses";
 	$rootScope.mainHeading = "Expenses";
@@ -44,6 +47,10 @@ app.controller("ctrlExpenses", ["$rootScope", "$scope", "config", "restalchemy",
 	$scope.clearExpense = function() {
 		$scope.newExpense = {};
 	};
+
+	$scope.calculateVat = function(){
+		$scope.vat = Math.round(($scope.newExpense.amount * VAT) * 100) / 100;
+	}
 
 	// Initialise scope variables
 	loadExpenses();

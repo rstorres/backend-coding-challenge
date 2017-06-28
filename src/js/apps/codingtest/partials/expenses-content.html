@@ -13,7 +13,11 @@
 			</li>
 			<li>
 				<label>Amount</label>
-				<input type="text" ng-required="true" ng-model="newExpense.amount" placeholder="00.00" />
+				<input type="text" ng-change="calculateVat()" ng-model-options="{debounce:500}" ng-required="true" ng-model="newExpense.amount" placeholder="00.00" />
+			</li>
+			<li>
+				<label>Vat</label>
+				<input type="text" readonly  ng-model="vat"/>
 			</li>
 			<li>
 				<label>Reason</label>

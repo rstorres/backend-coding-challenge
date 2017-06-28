@@ -14,7 +14,7 @@ public class Expense {
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date  date;
-    private float  amount;
+    private String  amount;
     private float  vat;
     private String reason;
 
@@ -27,11 +27,11 @@ public class Expense {
         return this;
     }
 
-    public float getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public Expense setAmount(float amount) {
+    public Expense setAmount(String amount) {
         this.amount = amount;
         return this;
     }
@@ -59,7 +59,7 @@ public class Expense {
 
         return new Expense()
                 .setDate(e.getExpenseDate())
-                .setAmount(e.getAmount())
+                .setAmount(new Float(e.getAmount()).toString())
                 .setVat(e.getVat())
                 .setReason(e.getReason());
     }

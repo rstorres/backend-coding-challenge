@@ -2,6 +2,7 @@ package com.engagetech.api.dao.impl;
 
 import com.engagetech.api.dao.ExpensesDao;
 import com.engagetech.api.model.ExpenseModel;
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.math.BigDecimal;
@@ -13,6 +14,8 @@ import java.util.Map;
  * Created by rtorres on 27/06/2017.
  */
 public class ExpensesDaoImpl implements ExpensesDao {
+
+    private static final Logger logger = Logger.getLogger(ExpensesDaoImpl.class);
 
     private static final String GET_EXPENSES_SQL = "select expense_date, amount, vat, reason from expenses";
 
@@ -28,6 +31,7 @@ public class ExpensesDaoImpl implements ExpensesDao {
 
     public List<ExpenseModel> getExpenses(){
 
+       logger.info("Getting expenses from database");
        return namedParameterJdbcTemplate.query(
                 GET_EXPENSES_SQL,
                 (rs,rowNum)-> {
@@ -41,6 +45,7 @@ public class ExpensesDaoImpl implements ExpensesDao {
 
     public void saveExpense(ExpenseModel e){
 
+        logger.info("Calculating VAT");
         float vat = BigDecimal.valueOf(VAT_RATE * e.getAmount()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 
         Map namedParameters = new HashMap();
@@ -48,6 +53,8 @@ public class ExpensesDaoImpl implements ExpensesDao {
         namedParameters.put("amount", e.getAmount());
         namedParameters.put("vat", vat);
         namedParameters.put("reason",e.getReason());
+
+        logger.info("Saving expense in the database");
         namedParameterJdbcTemplate.update(INSERT_EXPENSE_SQL, namedParameters);
     }
 

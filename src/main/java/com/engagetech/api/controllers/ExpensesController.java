@@ -28,7 +28,7 @@ public class ExpensesController extends BaseController{
 
     private static final Logger logger = Logger.getLogger(ExpensesController.class);
 
-    private static final String AMOUNT_REGEXP = "^(\\d*\\.?\\d*)(\\s*)([A-Z]{3}?)$";
+    private static final String AMOUNT_REGEXP = "^(\\d*\\.?\\d*)(\\s*)([A-Z]{3})?$";
     private static final String DEFAULT_CURRENCY = "GBP";
 
     @Autowired
